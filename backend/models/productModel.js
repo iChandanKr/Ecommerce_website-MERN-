@@ -17,7 +17,7 @@ const productShcema = new mongoose.Schema({
         maxLength: [8, "price can not exceed 8 figures"],
 
     },
-    rating: {
+    ratings: {
         type: Number,
         default: 0,
     },
