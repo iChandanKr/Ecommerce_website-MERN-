@@ -67,7 +67,7 @@ const productShcema = new mongoose.Schema({
             comment: {
                 type: String,
                 required: true,
-            }
+            },
         }
     ],
     user: {
