@@ -1,13 +1,13 @@
 import React, { Fragment, useEffect } from 'react'
 import { CgMouse } from "react-icons/cg"
 import "./home.css";
-import Product from './Product';
+import Product from './ProductCard';
 
 import MetaData from '../layout/MetaData';
-import { getProduct } from '../../actions/productAction';
+import { clearErrors, getProduct } from '../../actions/productAction';
 import { useSelector, useDispatch } from 'react-redux';
 import Loader from '../layout/Loader/Loader';
-import {useAlert} from 'react-alert';
+import { useAlert } from 'react-alert';
 
 
 
@@ -20,18 +20,19 @@ const Home = () => {
 
     useEffect(() => {
 
-        if(error){
-            return alert.error(error);
+        if (error) {
+            alert.error(error);
+            dispatch(clearErrors());
         }
         dispatch(getProduct());
 
 
 
-    }, [dispatch,error,alert])
+    }, [dispatch, error, alert])
 
     return <Fragment>
         {
-            loading ? <Loader/> : <Fragment>
+            loading ? <Loader /> : <Fragment>
                 <MetaData title="ECOMMERCE" />
                 <div className='banner'>
                     <p>Welcome to Ecommerce</p>
