@@ -31,7 +31,7 @@ const Home = () => {
     }, [dispatch, error, alert])
 
     return <Fragment>
-        
+
         {
             loading ? <Loader /> : <Fragment>
                 <MetaData title="ECOMMERCE" />
@@ -53,7 +53,7 @@ const Home = () => {
                 <div className='container' id='container'>
                     {
 
-                        products && products.map((product) => (<Product product={product} />))
+                        products && products.map((product) => (<Product key={product._id} product={product} />))
                     }
 
                 </div>

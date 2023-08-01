@@ -12,8 +12,15 @@ import Search from "./component/product/Search.js"
 import LoginSignUp from './component/user/LoginSignUp';
 import store from './store';
 import { loadUser } from './actions/userAction';
+import UserOptions from './component/layout/header/UserOption.js';
+import { useSelector } from 'react-redux';
+import Profile from './component/user/Profile.js';
+import ProtectedRoutes from './component/Route/ProtectedRoutes';
 
 function App() {
+
+  const { isAuthenticated, user, loading } = useSelector((state) => state.user)
+
   React.useEffect(() => {
     WebFont.load({
       google: {
@@ -29,6 +36,9 @@ function App() {
   return (
     <Router>
       <Header />
+      {
+        isAuthenticated && <UserOptions user={user} />
+      }
       <Routes>
 
         <Route path='/' element={<Home />} />
@@ -36,7 +46,17 @@ function App() {
         <Route path='/products' element={<Products />} />
         <Route path='/products/:keyword' element={<Products />} />
         <Route path='/search' element={<Search />} />
+
+
+            {/*---------- Protected Routes -------------*/}
+        <Route element={<ProtectedRoutes />}>
+          <Route path='/account' element={<Profile />} />
+        </Route>
+
+
+
         <Route path='/login' element={<LoginSignUp />} />
+
 
 
       </Routes>
