@@ -6,13 +6,13 @@ import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import FaceIcon from '@material-ui/icons/Face';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, clearErrors } from '../../actions/userAction';
+import { login, clearErrors, register } from '../../actions/userAction';
 import { useAlert } from 'react-alert';
 import { useNavigate } from 'react-router-dom'
 
 
 
-const LoginSignUp = () => {
+const LoginSignUp = ({location}) => {
 
     const dispatch = useDispatch();
     const alert = useAlert();
@@ -33,7 +33,7 @@ const LoginSignUp = () => {
         password: "",
     })
     const { name, email, password } = user;
-    const [avatar, setAvatar] = useState();
+    const [avatar, setAvatar] = useState("/Pforile.png");
     const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
 
 
@@ -45,7 +45,7 @@ const LoginSignUp = () => {
         // console.log("login form is submitted");
     }
 
-    const registerSubmit = () => {
+    const registerSubmit = (e) => {
         e.preventDefault();
 
         const myForm = new FormData();
@@ -54,10 +54,11 @@ const LoginSignUp = () => {
         myForm.set("password", password);
         myForm.set("avatar", avatar);
 
-        console.log("signup form submit");
+        // console.log("signup form submit");
+        dispatch(register(myForm));
 
 
-    }
+    };
 
     const registerDataChange = (e) => {
         if (e.target.name === "avatar") {
@@ -75,6 +76,9 @@ const LoginSignUp = () => {
 
         }
     }
+
+        
+
     useEffect(() => {
         if (error) {
             alert.error(error);
@@ -200,7 +204,8 @@ const LoginSignUp = () => {
                                 <input
                                     type="submit"
                                     value="Register"
-                                    className="signUpBtn" />
+                                    className="signUpBtn"
+                                />
                             </form>
 
 
