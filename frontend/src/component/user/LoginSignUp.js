@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 
-const LoginSignUp = ({location}) => {
+const LoginSignUp = ({ location }) => {
 
     const dispatch = useDispatch();
     const alert = useAlert();
@@ -77,7 +77,7 @@ const LoginSignUp = ({location}) => {
         }
     }
 
-        
+
 
     useEffect(() => {
         if (error) {
