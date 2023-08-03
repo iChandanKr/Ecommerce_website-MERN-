@@ -53,8 +53,6 @@ const UpdateProfile = () => {
 
     }
 
-
-
     useEffect(() => {
 
         if (user) {

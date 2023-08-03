@@ -175,13 +175,15 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
         email: req.body.email,
     };
 
-   
+
 
     // will add cloudinary
-
    
-  
-    if (req.body.avatar !== undefined && req.body.avatar !== "") {
+
+
+    // const localVar = JSON.stringify(req.body.avatar);
+    // console.log(localVar)
+    if (req.body.avatar!== undefined && req.body.avatar !== "") {
         console.log(req.body.avatar);
 
         const user = await User.findById(req.user.id);
@@ -200,8 +202,6 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     }
 
 
-
-
     // if (!newUserData.name || !newUserData.email) {
     //     return next(new ErrorHandler("please enter name and email both", 400));
     // }
@@ -211,7 +211,7 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
         useFindAndModify: false,
     });
 
-   
+
     res.status(200).json({
         success: true,
 
