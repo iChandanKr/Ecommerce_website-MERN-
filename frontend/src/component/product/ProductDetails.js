@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import Carousel from 'react-material-ui-carousel';
 import './ProductDetails.css';
@@ -9,6 +9,7 @@ import ReviewCard from './ReviewCard.js';
 import Loader from '../layout/Loader/Loader';
 import { useAlert } from 'react-alert';
 import MetaData from '../layout/MetaData';
+import { addItemsToCart } from '../../actions/cartAction';
 
 
 const ProductDetails = () => {
@@ -19,6 +20,28 @@ const ProductDetails = () => {
   const alert = useAlert();
 
   const { product, loading, error } = useSelector((state) => state.productDetails);
+
+  const [quantity, setQuantity] = useState(1);
+  const increaseQuantity = () => {
+    if (product.stock <= quantity) {
+      return;
+    }
+    const qty = quantity + 1;
+    setQuantity(qty);
+  }
+
+  const decreaseQuantity = () => {
+    if (quantity <= 1) {
+      return;
+    }
+    const qty = quantity - 1;
+    setQuantity(qty);
+  }
+
+  const addToCartHandler = () => {
+    dispatch(addItemsToCart(id, quantity));
+    alert.success("Item Added To Cart");
+  }
 
   useEffect(() => {
     if (error) {
@@ -87,11 +110,11 @@ const ProductDetails = () => {
                 <div className='detailsBlock-3-1'>
                   <div className='detailsBlock-3-1-1'>
 
-                    <button>-</button>
-                    <input defaultValue="1" type='number' />
-                    <button>+</button>
+                    <button onClick={decreaseQuantity}>-</button>
+                    <input readOnly type='number' value={quantity} />
+                    <button onClick={increaseQuantity}>+</button>
                   </div>
-                  <button>Add to Cart</button>
+                  <button onClick={addToCartHandler}>Add to Cart</button>
                 </div>
                 <p>
                   Status:
@@ -102,7 +125,7 @@ const ProductDetails = () => {
 
               </div>
 
-              <div className='detailBlock-4'>
+              <div className='detailsBlock-4'>
                 Description: <p>{product.description}</p>
               </div>
 

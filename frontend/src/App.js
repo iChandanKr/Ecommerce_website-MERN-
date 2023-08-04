@@ -19,6 +19,8 @@ import ProtectedRoutes from './component/Route/ProtectedRoutes';
 import UpdateProfile from './component/user/UpdateProfile.js';
 import UpdatePassword from './component/user/UpdatePassword.js';
 import ForgotPassword from './component/user/ForgotPassword.js';
+import ResetPassword from './component/user/ResetPassword.js';
+import Cart from './component/cart/Cart.js'
 
 function App() {
 
@@ -60,10 +62,12 @@ function App() {
 
 
         <Route path='/password/forgot' element={<ForgotPassword />} />
+        <Route path='/password/reset/:token' element={<ResetPassword />} />
 
 
 
         <Route path='/login' element={<LoginSignUp />} />
+        <Route path='/cart' element={<Cart />} />
 
 
 
