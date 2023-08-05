@@ -143,7 +143,7 @@ const ProductDetails = () => {
                 }</div>
 
             ) : (
-              <p className='noReviews'>NO Reviews Yet</p>
+              <p className='noReviews'>No Reviews Yet</p>
 
             )
           }

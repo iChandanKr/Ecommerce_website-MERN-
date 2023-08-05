@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Header from './component/layout/header/Header.js';
 import Footer from "./component/layout/footer/Footer.js";
@@ -20,21 +20,39 @@ import UpdateProfile from './component/user/UpdateProfile.js';
 import UpdatePassword from './component/user/UpdatePassword.js';
 import ForgotPassword from './component/user/ForgotPassword.js';
 import ResetPassword from './component/user/ResetPassword.js';
-import Cart from './component/cart/Cart.js'
+import Cart from './component/cart/Cart.js';
+import Shipping from './component/cart/Shipping.js';
+import ConfirmOrder from './component/cart/ConfirmOrder.js'
+import axios from 'axios';
+import Payment from './component/cart/Payment.js';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js'
+
 
 function App() {
 
   const { isAuthenticated, user, loading } = useSelector((state) => state.user)
+
+  const [stripeApiKey, setStripeApiKey] = useState("");
+  async function getStripeApiKey() {
+    const { data } = await axios.get('/api/v1/stripeapikey');
+    setStripeApiKey(data.stripeApiKey);
+
+  }
+  console.log(stripeApiKey);
+
 
   React.useEffect(() => {
     WebFont.load({
       google: {
         families: ["Roboto", "Ubuntu", "Chilanka"]
       }
-    })
+    });
+
 
     store.dispatch(loadUser());
 
+    getStripeApiKey();
 
   }, [])
 
@@ -44,6 +62,21 @@ function App() {
       {
         isAuthenticated && <UserOptions user={user} />
       }
+
+      {
+        stripeApiKey && <Elements stripe={loadStripe(stripeApiKey)}>
+          <Routes>
+
+            <Route element={<ProtectedRoutes />}>
+              <Route path='/process/payment' element={<Payment />} />
+            </Route>
+
+          </Routes>
+        </Elements>
+
+      }
+
+
       <Routes>
 
         <Route path='/' element={<Home />} />
@@ -58,7 +91,11 @@ function App() {
           <Route path='/account' element={<Profile />} />
           <Route path='/me/update' element={<UpdateProfile />} />
           <Route path='/password/update' element={<UpdatePassword />} />
+          <Route path='/shipping' element={<Shipping />} />
+          <Route path='/order/confirm' element={<ConfirmOrder />} />
+
         </Route>
+
 
 
         <Route path='/password/forgot' element={<ForgotPassword />} />

@@ -13,12 +13,13 @@ const Cart = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { cartItems } = useSelector((state) => state.cart);
-    const { userInfo } = useSelector((state) => state.user);
+    const { isAuthenticated } = useSelector((state) => state.user);
+    // console.log(isAuthenticated);
 
     const increaseQuantity = (id, quantity, stock) => {
         const newQty = quantity + 1;
         if (stock <= quantity) {
-            return;
+            return; v
         }
         dispatch(addItemsToCart(id, newQty));
     };
@@ -36,12 +37,12 @@ const Cart = () => {
     };
 
     const checkoutHandler = () => {
-        // history.push("/login?redirect=shipping");
-        if (!userInfo) {
-            navigate("/login");
-        } else {
-            navigate("/shipping");
-        }
+        // if (!isAuthenticated) {
+        //     navigate("/login");
+        // } else {
+        //     navigate("/shipping");
+        // }
+        navigate("/login?redirect=/shipping");
     };
 
     return (
