@@ -4,7 +4,6 @@ import Carousel from 'react-material-ui-carousel';
 import './ProductDetails.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearErrors, getProductDetails, newReview } from '../../actions/productAction';
-import ReactStart from 'react-rating-stars-component';
 import ReviewCard from './ReviewCard.js';
 import Loader from '../layout/Loader/Loader';
 import { useAlert } from 'react-alert';
@@ -89,13 +88,13 @@ const ProductDetails = () => {
   }, [dispatch, id, error, alert,success,reviewError]);
 
   const options = {
-    edit: false,
-    color: "rgba(20,20,20,0.1)",
-    activeColor: "tomato",
-    size: window.innerWidth < 600 ? 20 : 25,
+    
+    // activeColor: "tomato",
+    size:"large",
     value: product.ratings,
-    isHalf: true,
-
+    readOnly:true,
+    precision:0.5,
+  
   };
 
 
@@ -135,7 +134,7 @@ const ProductDetails = () => {
 
               <div className='detailsBlock-2'>
 
-                <ReactStart {...options} />
+                <Rating {...options} />
                 <span className='detailsBlock-2-span'>({product.numOfReviews}Reviews)</span>
 
               </div>

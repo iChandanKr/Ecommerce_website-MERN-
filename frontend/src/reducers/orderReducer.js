@@ -27,11 +27,11 @@ export const newOrderReducer = (state = {}, action) => {
             return {
                 loading: false,
                 order: action.payload,
-
+                
             }
         case CREATE_ORDER_FAIL:
             return {
-                loading: true,
+                loading: false,
                 error: action.payload,
             }
         case CLEAR_ERRORS:
