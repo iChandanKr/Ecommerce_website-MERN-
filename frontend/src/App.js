@@ -30,6 +30,10 @@ import { loadStripe } from '@stripe/stripe-js';
 import OrderSuccess from './component/cart/OrderSuccess.js';
 import MyOrders from './component/order/Myorders.js';
 import OrderDetails from './component/order/OrderDetails.js';
+import Dashboard from './component/admin/Dashboard.js';
+import AdminProtected from "./component/Route/AdminProtected";
+import ProductList from './component/admin/ProductList.js';
+import NewProduct from './component/admin/NewProduct.js';
 
 
 
@@ -99,8 +103,17 @@ function App() {
           <Route path='/order/confirm' element={<ConfirmOrder />} />
           <Route path='/success' element={<OrderSuccess />} />
           <Route path='/orders' element={<MyOrders />} />
-          <Route path='/order/:id' element={<OrderDetails/>}/>
+          <Route path='/order/:id' element={<OrderDetails />} />
 
+        </Route>
+
+
+        {/* Admin Protected Route-----------------------------------*/}
+        <Route element={<AdminProtected />}>
+
+          <Route path='/admin/dashboard' element={<Dashboard />} />
+          <Route path='/admin/products' element={<ProductList />} />
+          <Route path='/admin/product/new'element={<NewProduct/>} />
         </Route>
 
 
