@@ -8,7 +8,10 @@ import FaceIcon from '@material-ui/icons/Face';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, clearErrors, register } from '../../actions/userAction';
 import { useAlert } from 'react-alert';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import MetaData from '../layout/MetaData';
+
+
 
 
 
@@ -120,6 +123,7 @@ const LoginSignUp = () => {
         <Fragment>
             {
                 loading ? <Loader /> : <Fragment>
+                <MetaData title="Login-Page" />
                     <div className='LoginSignUpContainer'>
                         <div className='LoginSignUpBox'>
                             <div>

@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   clearErrors,
   getAdminProduct,
+  deleteProduct
  
 } from "../../actions/productAction";
 import { Link } from "react-router-dom";
@@ -14,18 +15,20 @@ import MetaData from "../layout/MetaData";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SideBar from "./Sidebar";
-// import { DELETE_PRODUCT_RESET } from "../../constants/productConstants";
+import { DELETE_PRODUCT_RESET } from "../../constants/productConstants";  
+import{useNavigate} from 'react-router-dom'
 
 const ProductList = ({ history }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const alert = useAlert();
 
   const { error, products } = useSelector((state) => state.products);
 
-  // const { error: deleteError, isDeleted } = useSelector(
-  //   (state) => state.product
-  // );
+  const { error: deleteError, isDeleted } = useSelector(
+    (state) => state.product
+  );
 
   const deleteProductHandler = (id) => {
     dispatch(deleteProduct(id));
@@ -34,22 +37,22 @@ const ProductList = ({ history }) => {
   useEffect(() => {
     if (error) {
       alert.error(error);
+      dispatch(clearErrors());  
+    }
+
+    if (deleteError) {
+      alert.error(deleteError);
       dispatch(clearErrors());
     }
 
-    // if (deleteError) {
-    //   alert.error(deleteError);
-    //   dispatch(clearErrors());
-    // }
-
-    // if (isDeleted) {
-    //   alert.success("Product Deleted Successfully");
-    //   history.push("/admin/dashboard");
-    //   dispatch({ type: DELETE_PRODUCT_RESET });
-    // }
+    if (isDeleted) {
+      alert.success("Product Deleted Successfully");
+      navigate('/admin/dashboard')
+      dispatch({ type: DELETE_PRODUCT_RESET });
+    }
 
     dispatch(getAdminProduct());
-  }, [dispatch, alert, error, history]);
+  }, [dispatch, alert, error,deleteError,isDeleted]);
 
   const columns = [
     { field: "id", headerName: "Product ID", minWidth: 200, flex: 0.5 },

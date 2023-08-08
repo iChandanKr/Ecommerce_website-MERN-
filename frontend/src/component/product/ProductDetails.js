@@ -17,7 +17,7 @@ import {
   Button,
 } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
-import { NEW_REVIEW_RESET } from '../../constants/prouductConstants';
+import { NEW_REVIEW_RESET } from '../../constants/productConstants';
 
 
 const ProductDetails = () => {

@@ -34,7 +34,9 @@ import Dashboard from './component/admin/Dashboard.js';
 import AdminProtected from "./component/Route/AdminProtected";
 import ProductList from './component/admin/ProductList.js';
 import NewProduct from './component/admin/NewProduct.js';
-
+import UpdateProduct from './component/admin/UpdateProduct.js';
+import OrderList from './component/admin/OrdrList.js';
+import ProcessOrder from './component/admin/ProcessOrder.js'
 
 
 function App() {
@@ -47,7 +49,7 @@ function App() {
     setStripeApiKey(data.stripeApiKey);
 
   }
-  console.log(stripeApiKey);
+  // console.log(stripeApiKey);
 
 
   React.useEffect(() => {
@@ -113,7 +115,10 @@ function App() {
 
           <Route path='/admin/dashboard' element={<Dashboard />} />
           <Route path='/admin/products' element={<ProductList />} />
-          <Route path='/admin/product/new'element={<NewProduct/>} />
+          <Route path='/admin/product/new' element={<NewProduct />} />
+          <Route path='/admin/product/:id' element={<UpdateProduct />} />
+          <Route path='/admin/orders' element={<OrderList />} />
+          <Route path='/admin/order/:id' element={<ProcessOrder />} />
         </Route>
 
 
