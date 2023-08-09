@@ -179,12 +179,12 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
 
 
     // will add cloudinary
-   
+
 
 
     // const localVar = JSON.stringify(req.body.avatar);
     // console.log(localVar)
-    if (req.body.avatar!== undefined && req.body.avatar !== "") {
+    if (req.body.avatar !== undefined && req.body.avatar !== "") {
         console.log(req.body.avatar);
 
         const user = await User.findById(req.user.id);
@@ -255,22 +255,21 @@ exports.updateUserRole = catchAsyncErrors(async (req, res, next) => {
         email: req.body.email,
         role: req.body.role,
     };
-    if (!newUserData.name || !newUserData.email || !newUserData.role) {
-        return next(new ErrorHandler("please enter all the credentials", 400));
-    }
+    // if (!newUserData.name || !newUserData.email || !newUserData.role) {
+    //     return next(new ErrorHandler("please enter all the credentials", 400));
+    // }
 
 
-    const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+    await User.findByIdAndUpdate(req.params.id, newUserData, {
         new: true,
         runValidators: true,
-        // useFindAndModify: false,
+        useFindAndModify: false,
     });
-    if (!user) {
-        return next(new ErrorHandler(`user does not exist with Id:${req.params.id}`, 400));
-    }
+    // if (!user) {
+    //     return next(new ErrorHandler(`user does not exist with Id:${req.params.id}`, 400));
+    // }
     res.status(200).json({
         success: true,
-
     });
 
 });
@@ -279,12 +278,15 @@ exports.updateUserRole = catchAsyncErrors(async (req, res, next) => {
 // Delete user-----------
 exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
     const user = await User.findById(req.params.id);
-    // will remove cloudinary
-
 
     if (!user) {
         return next(new ErrorHandler(`user does not exist with Id:${req.params.id}`, 400));
     }
+    //  removing  cloudinary
+
+    const imageId = user.avatar.public_id;
+    await cloudinary.v2.uploader.destroy(imageId);
+
     await user.deleteOne();
     res.status(200).json({
         sucess: true,
