@@ -5,9 +5,9 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const About = () => {
-    const githubLink = () => {
-        window.location = "https://github.com/iChandanKr";
-    };
+    // const githubLink = () => {
+    //     window.location.href = "https://github.com/iChandanKr";
+    // };
     return (
         <div className="aboutSection">
             <div></div>
@@ -23,9 +23,9 @@ const About = () => {
                             alt="Founder"
                         />
                         <Typography>Chandan Kumar</Typography>
-                        <Button onClick={githubLink} color="primary">
+                        {/*<Button onClick={githubLink} color="primary">
                             iChandanKr
-                        </Button>
+    </Button> */}
                         <span>
                             This is a Ecommerce wesbite made by @iChandanKr . Only with the
                             purpose to learn MERN Stack Development.
@@ -37,8 +37,8 @@ const About = () => {
                             href="https://github.com/iChandanKr"
                             target="blank"
                         >
-                          
-                            <GitHubIcon className="githubSvgIcon"/>
+
+                            <GitHubIcon className="githubSvgIcon" />
                         </a>
 
                         <a href="https://www.linkedin.com/in/chandan-kumar-0ab518212" target="blank">

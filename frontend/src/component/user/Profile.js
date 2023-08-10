@@ -7,14 +7,14 @@ import { useNavigate } from 'react-router-dom';
 import './Profile.css';
 
 const Profile = () => {
-    const { user, isAuthenticated, loading } = useSelector((state) => state.user);
     const navigate = useNavigate();
+    const { user, loading, isAuthenticated } = useSelector((state) => state.user);
 
     useEffect(() => {
         if (isAuthenticated === false) {
             navigate("/login");
         }
-    }, [isAuthenticated])
+    }, [isAuthenticated, navigate])
 
     return (
         <Fragment>
@@ -26,6 +26,7 @@ const Profile = () => {
                         <div>
                             <h1>My Profile</h1>
                             <img src={user.avatar.url} alt={user.name} />
+                            {console.log(user.avatar.url)   }
                             <Link to="/me/update">Edit Profile</Link>
                         </div>
 

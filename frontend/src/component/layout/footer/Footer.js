@@ -12,23 +12,23 @@ import{GrLinkedin} from 'react-icons/gr'
 
 const footer = () => {
   const linkedinStyle = {
-    background: '#0A66C2',  
+    background: 'white',  
 
-    color: 'white',
+    color: '#0A66C2',
     borderBlock: 'auto',
 
   };
 
   const githubStyle = {
-    color: '#000',
-    background: 'white',
+    color: 'white',
+    // background: 'white', 
     borderBlock: 'none',
     margin: 'none'
   };
 
   const instagramStyle = {
-    background: '#bc2a8d'
-    , color: 'white'
+    // background: '#bc2a8d'
+     color: '#bc2a8d'
   };
   return (
     <footer id='footer'>
@@ -50,7 +50,7 @@ const footer = () => {
       <div className='rightFooter'>
         <h4>Follow Me</h4>
         {/*<a href='https://www.linkedin.com/in/chandan-kumar-0ab518212'>linkedin</a>*/}
-        <a href='https://www.linkedin.com/in/chandan-kumar-0ab518212'>{<FaLinkedinIn style={linkedinStyle} />}</a>
+        <a href='https://www.linkedin.com/in/chandan-kumar-0ab518212'>{<ImLinkedin style={linkedinStyle} />}</a>
 
         {/*<a href='https://github.com/iChandanKr'>github</a></footer>*/}
         <a href='https://github.com/iChandanKr'>{<FaGithub style={githubStyle} />}</a>
