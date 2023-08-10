@@ -40,6 +40,7 @@ import ProcessOrder from './component/admin/ProcessOrder.js';
 import UsersList from './component/admin/UsersList.js';
 import UpdateUser from './component/admin/UpdateUser.js';
 import ProductReviews from './component/admin/ProductReviews.js';
+import About from './component/layout/about/About.js';
 
 
 function App() {
@@ -97,6 +98,7 @@ function App() {
         <Route path='/products' element={<Products />} />
         <Route path='/products/:keyword' element={<Products />} />
         <Route path='/search' element={<Search />} />
+        <Route path='/about' element={<About/>}/>
 
 
         {/*---------- Protected Routes -------------*/}
