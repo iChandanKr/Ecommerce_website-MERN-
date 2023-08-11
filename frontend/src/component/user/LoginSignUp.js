@@ -37,7 +37,7 @@ const LoginSignUp = () => {
         password: "",
     })
     const { name, email, password } = user;
-    const [avatar, setAvatar] = useState("/Pforile.png");
+    const [avatar, setAvatar] = useState("/Profile.png");
     const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
 
 
@@ -80,7 +80,7 @@ const LoginSignUp = () => {
 
         }
     }
-    console.log({location});
+    // console.log({location});
 
     const redirect = location.search ? location.search.split("=")[1] : "/account";
     // console.log("split is ",location.search.split("=")[1]);

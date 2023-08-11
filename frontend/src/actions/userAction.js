@@ -50,7 +50,7 @@ import axios from 'axios';
 // LOGIN-----------
 
 
-export const login = (email, password) => async (dispatch) => {
+export const login = (email, password) => async (dispatch, getState) => {
     try {
         dispatch({ type: LOGIN_REQUEST });
 
@@ -59,6 +59,8 @@ export const login = (email, password) => async (dispatch) => {
         const { data } = await axios.post(`/api/v1/login`, { email, password }, config);
 
         dispatch({ type: LOGIN_SUCCESS, payload: data.user });
+        // add to local storage
+        localStorage.setItem("users", JSON.stringify(data.user));
     } catch (error) {
         dispatch({ type: LOGIN_FAIL, payload: error.response.data.message });
     }
@@ -70,6 +72,8 @@ export const register = (userData) => async (dispatch) => {
         dispatch({ type: REGISTER_USER_REQUEST });
         const config = { headers: { "Content-Type": "multipart/form-data" } };
         const { data } = await axios.post(`/api/v1/user/register`, userData, config);
+        localStorage.setItem("users", JSON.stringify(data.user));
+
         dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
 
     } catch (error) {
@@ -102,7 +106,6 @@ export const logout = () => async (dispatch) => {
     try {
 
         await axios.get(`/api/v1/logout`);
-
         dispatch({ type: LOGOUT_SUCCESS });
     } catch (error) {
         dispatch({ type: LOGOUT_FAIL, payload: error.response.data.message });

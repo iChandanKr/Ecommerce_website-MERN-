@@ -14,18 +14,18 @@ const reducer = combineReducers({
     profile: profileReducer,
     forgotPassword: forgotPasswordReducer,
     cart: cartReducer,
-    newOrder:newOrderReducer,
-    myOrders:myOrdersReducer,
-    orderDetails:orderDetailsReducer,
-    newReview:newReviewReducer,
-    newProduct:newProductReducer,
-    product:deleteProductReducer,  
-    allOrders:allOrdersReducer,
-    order:orderReducer,
-    allUsers:allUsersReducer,
-    userDetails:userDetailsReducer,
-    productReviews:productReviewsReducer,
-    review:reviewReducer,
+    newOrder: newOrderReducer,
+    myOrders: myOrdersReducer,
+    orderDetails: orderDetailsReducer,
+    newReview: newReviewReducer,
+    newProduct: newProductReducer,
+    product: deleteProductReducer,
+    allOrders: allOrdersReducer,
+    order: orderReducer,
+    allUsers: allUsersReducer,
+    userDetails: userDetailsReducer,
+    productReviews: productReviewsReducer,
+    review: reviewReducer,
 
 });
 let initialState = {
@@ -33,6 +33,9 @@ let initialState = {
         cartItems: localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : [],
         shippingInfo: localStorage.getItem("shippingInfo") ? JSON.parse(localStorage.getItem("shippingInfo")) : {},
     },
+    user: {
+        user: localStorage.getItem("users") ? JSON.parse(localStorage.getItem("users")) : {},
+    }
 
 };
 const middleWare = [thunk];

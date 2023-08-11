@@ -1,20 +1,24 @@
 import React, { Fragment, useEffect } from 'react';
 import MetaData from '../layout/MetaData';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Loader from '../layout/Loader/Loader';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import './Profile.css';
+import { loadUser } from '../../actions/userAction';
 
 const Profile = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const { user, loading, isAuthenticated } = useSelector((state) => state.user);
 
     useEffect(() => {
-        if (isAuthenticated === false) {
+
+        // dispatch(loadUser());
+        if (isAuthenticated === false) {    
             navigate("/login");
         }
-    }, [isAuthenticated, navigate])
+    }, [isAuthenticated, navigate,loading]) 
 
     return (
         <Fragment>
@@ -24,9 +28,9 @@ const Profile = () => {
 
                     <div className='profileContainer'>
                         <div>
+                        {console.log(user.avatar.url)}
                             <h1>My Profile</h1>
                             <img src={user.avatar.url} alt={user.name} />
-                            {console.log(user.avatar.url)   }
                             <Link to="/me/update">Edit Profile</Link>
                         </div>
 
