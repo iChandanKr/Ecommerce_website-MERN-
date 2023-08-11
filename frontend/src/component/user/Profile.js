@@ -28,7 +28,6 @@ const Profile = () => {
 
                     <div className='profileContainer'>
                         <div>
-                        {console.log(user.avatar.url)}
                             <h1>My Profile</h1>
                             <img src={user.avatar.url} alt={user.name} />
                             <Link to="/me/update">Edit Profile</Link>
