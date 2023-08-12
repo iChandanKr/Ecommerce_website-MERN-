@@ -72,6 +72,8 @@ const NewProduct = () => {
 
     const createProductImagesChange = (e) => {
         const files = Array.from(e.target.files);
+        // const files = String.from(e.target.files);
+
 
         setImages([]);
         setImagesPreview([]);

@@ -42,6 +42,7 @@ import UpdateUser from './component/admin/UpdateUser.js';
 import ProductReviews from './component/admin/ProductReviews.js';
 import About from './component/layout/about/About.js';
 import Contact from './component/layout/contact/Contact.js';
+import NotFound from './component/layout/notFound/NotFound';
 
 
 function App() {
@@ -99,8 +100,8 @@ function App() {
         <Route path='/products' element={<Products />} />
         <Route path='/products/:keyword' element={<Products />} />
         <Route path='/search' element={<Search />} />
-        <Route path='/about' element={<About/>}/>
-        <Route path='/contact'element={<Contact/>}/>
+        <Route path='/about' element={<About />} />
+        <Route path='/contact' element={<Contact />} />
 
 
         {/*---------- Protected Routes -------------*/}
@@ -128,7 +129,7 @@ function App() {
           <Route path='/admin/order/:id' element={<ProcessOrder />} />
           <Route path='/admin/users' element={<UsersList />} />
           <Route path='/admin/user/:id' element={<UpdateUser />} />
-          <Route path='/admin/reviews' element={<ProductReviews/>}/>
+          <Route path='/admin/reviews' element={<ProductReviews />} />
         </Route>
 
 
@@ -142,7 +143,7 @@ function App() {
         <Route path='/cart' element={<Cart />} />
 
 
-
+        <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />
 
