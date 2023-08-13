@@ -143,7 +143,7 @@ function App() {
         <Route path='/cart' element={<Cart />} />
 
 
-        <Route path='*' element={<NotFound />} />
+         <Route path='*' element={window.location.pathname === '/process/payment' ? null : <NotFound />} />
       </Routes>
       <Footer />
 
