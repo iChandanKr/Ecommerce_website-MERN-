@@ -14,18 +14,20 @@ process.on("uncaughtException", (err) => {
 //Config-------
 dotenv.config({ path: "./config/config.env" });
 
-
+const PORT = process.env.PORT || 3000;
 // connection to database----
 connectDB();
 cloudinary.config({
-    cloud_name:process.env.CLOUDINARY_NAME,
-    api_key:process.env.CLOUDINARY_API_KEY,
-    api_secret:process.env.CLOUDINARY_API_SECRET,
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
 })
 
-const server = app.listen(process.env.PORT, () => {
+const server = app.listen(PORT, () => {
 
-    console.log(`Server is woriking on http://localhost:${process.env.PORT}`);
+    // console.log(`Server is woriking on http://localhost:${process.env.PORT}`);
+    console.log(`Server is woriking on http://localhost:${PORT}`);
+
 });
 
 
